@@ -1,1 +1,84 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+
+body {
+  background-color: rgb(39, 160, 39);
+  padding-top: 10px;
+  padding-left: 10px;
+}
+button {
+  border-radius: 7px;
+  width: 60px;
+  height: 30px;
+}
+input {
+  width: 50px;
+  height: 30px;
+  margin-right: 3px;
+  margin-left: 3px;
+  border: solid gray;
+}
+.cartasSort {
+  display: flex;
+}
+.Cards {
+  background-color: white;
+  width: 100px;
+  margin: 10px;
+  border-radius: 5px;
+  height: 119px;
+  position: relative;
+}
+h4 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+p {
+  padding-top: 35px;
+  font-size: 35px;
+  padding-right: 10px;
+  font-style: italic;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.icono-top {
+  position: absolute;
+  top: 0px;
+  left: 8px;
+  font-size: 23px;
+}
+.icono-bottom {
+  position: absolute;
+  bottom: 0px;
+  right: 8px;
+  font-size: 23px;
+}
+
+.numeroCard {
+  font-size: 40px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.spade::after {
+  width: 10px;
+  height: 10px;
+  color: black;
+  content: "♠";
+}
+.club::after {
+  width: 10px;
+  height: 10px;
+  color: black;
+  content: "♣";
+}
+.heart::after {
+  width: 10px;
+  height: 10px;
+  color: red;
+  content: "♥";
+}
+.diamond::after {
+  width: 10px;
+  height: 10px;
+  color: red;
+  content: "♦";
+}
