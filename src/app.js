@@ -44,14 +44,18 @@ window.myFuncion = function() {
 window.myFuncion2 = function() {
   let cartasOrdenadas = "";
   for (let index = 0; index < window.cartas.length; index++) {
-    for (let j = 0; j < window.cartas.length - index - 1; j++) {
-      if (
-        window.cartas[j].numeroAleatorio > window.cartas[j + 1].numeroAleatorio
-      ) {
-        let aux = window.cartas[j];
-        window.cartas[j] = window.cartas[j + 1];
-        window.cartas[j + 1] = aux;
-      }
+    let i = index;
+    let iMin = i;
+    for (++i; i < window.cartas.length; i++) {
+      window.cartas[i].numeroAleatorio < window.cartas[iMin].numeroAleatorio &&
+        (iMin = i);
+      [
+        window.cartas[index].numeroAleatorio,
+        window.cartas[iMin].numeroAleatorio
+      ] = [
+        window.cartas[iMin].numeroAleatorio,
+        window.cartas[index].numeroAleatorio
+      ];
     }
     cartasOrdenadas += `<div class="cartasSort"> <div><p>${index}</p></div>`;
     for (let y = 0; y < window.cartas.length; y++) {
