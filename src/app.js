@@ -19,57 +19,73 @@ const myNumeroCard = [
   "Q",
   "K"
 ];
-window.myFuncion = function() {
+window.draw = function () {
   window.cartas = [];
+  window.sorted = false;
   const myInput = document.querySelector(".myInput");
   const cartasSort = document.querySelector(".cartasSort");
   let myCard = "";
 
   for (let index = 0; index < myInput.value; index++) {
+
     const pintaAleatoria = Math.floor(Math.random(0) * 4);
     const numeroAleatorio = Math.floor(Math.random(0) * 13);
+
     window.cartas.push({ pintaAleatoria, numeroAleatorio });
     myCard += `
-      <div class="Cards">
-        <div class="icono-top ${myPinta[pintaAleatoria]}"></div>
-        <div class="numeroCard ">${myNumeroCard[numeroAleatorio]}</div>
-        <div class="icono-bottom ${myPinta[pintaAleatoria]}"></div>
-      </div>
+    
+    <div class="Cards">
+    <div class="icono-top ${myPinta[pintaAleatoria]}"></div>
+    <div class="numeroCard ">${myNumeroCard[numeroAleatorio]}</div>
+    <div class="icono-bottom ${myPinta[pintaAleatoria]}"></div>
+    </div>
     `;
+
   }
 
   cartasSort.innerHTML = myCard;
 };
 
-window.myFuncion2 = function() {
+window.sorting = function () {
+  if (window.sorted) {
+    return;
+  }
   let cartasOrdenadas = "";
   for (let index = 0; index < window.cartas.length; index++) {
+
     let i = index;
+
     let iMin = i;
-    for (++i; i < window.cartas.length; i++) {
+
+
+    for (i = index + 1; i < window.cartas.length; i++) {
+
+
       window.cartas[i].numeroAleatorio < window.cartas[iMin].numeroAleatorio &&
         (iMin = i);
-      [
-        window.cartas[index].numeroAleatorio,
-        window.cartas[iMin].numeroAleatorio
-      ] = [
-        window.cartas[iMin].numeroAleatorio,
-        window.cartas[index].numeroAleatorio
-      ];
+
     }
+
+    if (iMin != index) {
+      const temp = window.cartas[index]
+      const min = window.cartas[iMin]
+
+      window.cartas[index] = min
+      window.cartas[iMin] = temp
+    }
+
     cartasOrdenadas += `<div class="cartasSort"> <div><p>${index}</p></div>`;
+
     for (let y = 0; y < window.cartas.length; y++) {
+
       cartasOrdenadas += ` 
        
         <div class="Cards">
-        <div class="icono-top ${
-          myPinta[window.cartas[y].pintaAleatoria]
+        <div class="icono-top ${myPinta[window.cartas[y].pintaAleatoria]
         }"></div>
-        <div class="numeroCard ">${
-          myNumeroCard[window.cartas[y].numeroAleatorio]
+        <div class="numeroCard ">${myNumeroCard[window.cartas[y].numeroAleatorio]
         }</div>
-        <div class="icono-bottom ${
-          myPinta[window.cartas[y].pintaAleatoria]
+        <div class="icono-bottom ${myPinta[window.cartas[y].pintaAleatoria]
         }"></div>
         </div>
     `;
@@ -78,4 +94,5 @@ window.myFuncion2 = function() {
   }
   const cartasSort2 = document.querySelector("#cartaSort2");
   cartasSort2.innerHTML = cartasOrdenadas;
+  window.sorted = true;
 };
